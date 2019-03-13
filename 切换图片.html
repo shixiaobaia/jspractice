@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+		//queding事件：
+		//需要定时器，什么时候执行  onload事件：页面载入事件 init
+		//在函数中开启定时器
+		var index=0;
+		     function changeimg(){
+		     	var img=document.getElementById("img1");
+		     	//img.src="img/变量名"+".jpg"
+		     	var curIndex=index %3 + 1;
+		     	img.src="图片/"+curIndex+".jpg";
+		     	index=index+1;
+		     }
+			function init(){
+				setInterval("changeimg()",3000);
+			}
+		</script>
+	</head >
+	<body onload="init()">
+		<img src="图片/1.jpg" width="50%" id="img1"/>
+		
+	</body>
+</html>
