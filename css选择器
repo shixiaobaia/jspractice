@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*选中标签*/
+			/*标签选择器*/
+			div{
+				color: #F00;
+				font-size: 24px;
+			}
+			/*类选择器需要在标签中指定class属性
+			 * 类选择器>标签选择器
+			 */
+			.dl1{
+				color: #0F0;
+				font-size: 24px;
+			}
+			/*id选择器：
+			     #id属性值{
+			     	样式；
+			     }
+			     id选择器优先级高于类选择器
+			     注意：id属性在html标签中必须是唯一的，在js中，经常通过
+			     */
+			
+			     #ch{
+			     	color: #00F;
+			     }
+			     /*并集选择器*/
+			    .dl1,#ch{
+			    	font-family: "微软雅黑";
+			    	font-size: 24px;
+			    	color: #ccc;
+			    }
+			    /*交集选择器*/
+			   div span {
+			   	font-size: 36px;
+			   	color: #0000FF;
+			   }
+			   
+		</style>
+	</head>
+	
+	<body>
+		<!--
+        	作者：offline
+        	时间：2019-02-22
+        	描述：无序列表：u1
+        	            属性：type="disc"
+        	      列表项：1i
+        	      你的爱好？
+        <ul type="square">足球</ul>
+    你喜欢的明星
+    <ol  type="">赵丽颖</ol>
+        -->
+        <div class="dl1" id="ch">1</div>
+        <div id="ch"><span>这是span标签的内容</span>2</div>
+        <hr />
+        <span>1</span>
+        <span>2</span>
+	</body>
+</html>
