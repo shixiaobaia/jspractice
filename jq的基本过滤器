@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jq的基本过滤器</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="js/jquery-1.8.3.js"></script>
+		<script>
+			/**
+			 * 基本的过滤选择器：:first/first() 
+			 */
+			$(function(){
+				
+				$("#btn1").click(function(){
+					
+					$("#one").first().css("background-color","palegreen") ;
+				}) ;
+				
+				$("#btn2").click(function(){
+					
+					$("div:even").css("background-color","palegreen") ;
+				}) ;
+				
+				$("#btn3").click(function(){
+					
+					$("div:odd").css("background-color","palegreen") ;
+				}) ;
+				
+				$("#btn4").click(function(){
+					
+					//:gt(greater than 大于)  :lt(letter than 小于)
+					$("div:gt(2)").css("background-color","palegreen") ;
+				}) ;
+			}) ;
+		</script>
+	</head>
+	<body>
+<input type="button" value="请过滤掉第一个div元素" id="btn1" />
+<input type="button" value="请过滤当前为偶数个div" id="btn2" />
+<input type="button" value="请过滤当前为奇数个div元素" id="btn3" />
+<input type="button" value="过滤div元素索引值大于2的元素" id="btn4" />
+		<br />
+		<div id="one"><!--0-->
+			<div class="mini">1-1</div><!--1-->
+		</div>
+		<div id="two"><!--2-->
+			<div class="mini">2-1</div><!--3-->
+			<div class="mini">2-2</div><!--4-->
+		</div>
+		<div id="three">
+			<div class="mini">3-1</div>
+			<div class="mini">3-2</div>
+			<div class="mini">3-3</div>
+		</div>
+		<span id="four">span</span>
+	</body>
+</html>
