@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jq的层级选择器</title>
+<link rel="stylesheet" href="css/style.css" />
+<script src="js/jquery-1.8.3.js"></script>
+<script>
+	/**
+	 * jq的层级选择器
+	 * 		1.子元素选择器
+	 * 				选择器1 > 选择器2
+	 * 		2.后代选择器
+	 * 				选择器1 选择器2
+	 * 		3.相邻兄弟选择器 ：
+	 * 				选择器1+选择器2 		紧挨着的弟弟
+	 * 
+	 * 		4.兄弟选择器：一定同辈的级别
+	 * 				选择器1 ~ 选择器2
+	 */
+	$(function(){
+		
+		//找出body下面的子div元素
+		$("#btn1").click(function(){
+			
+			//子元素选择器
+			$("body > div").css("background-color","palegreen") ;
+		}) ;
+		
+		//找出body下面的所有的div元素
+		$("#btn2").click(function(){
+			
+			//后代选择器
+			$("body div").css("background-color","palegreen") ;
+		}) ;
+		
+		//找出id为one的紧挨着兄弟的元素
+		$("#btn3").click(function(){
+			
+			//相邻兄弟选择器
+			$("#one+div").css("background-color","palegreen") ;
+		}) ;
+		
+		//找出id为one的下面的所有的弟弟元素" id
+		$("#btn4").click(function(){
+			
+			$("#one~div").css("background-color","palegreen") ;
+		}) ;
+	}) ;
+</script>
+	</head>
+	<body>
+<input type="button" value="找出body下面的子div元素" id="btn1" />
+<input type="button" value="找出body下面的所有的div元素" id="btn2" />
+<input type="button" value="找出id为one的紧挨着兄弟的元素" id="btn3" />
+<input type="button" value="找出id为one的下面的所有的弟弟元素" id="btn4" />
+<br />
+		<div id="one">
+			<div class="mini">1-1</div>
+		</div>
+		<div id="two">
+			<div class="mini">2-1</div>
+			<div class="mini">2-2</div>
+		</div>
+		<div id="three">
+			<div class="mini">3-1</div>
+			<div class="mini">3-2</div>
+			<div class="mini">3-3</div>
+		</div>
+		<span id="four">span</span>
+	</body>
+</html>
