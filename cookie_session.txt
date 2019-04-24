@@ -1,0 +1,79 @@
+Cookie的案例:
+记录用户上次访问的时间
+
+技术分析 
+   访问的是一个Servlet
+
+  1)从cookie数组中获取指定cookie（c）的内容 :cookie名称:lastTime
+  2)判断当前的cookie是否为空
+     若为空,
+          提示:"您当前是第一次访问"
+    若不为空,获取cookie的内容: value  ，展示访问的时间
+    ----->Long time = Long.parseLong(value);//12123234
+		
+     Date日期字符串
+     Date(long time)--->
+public String toLocaleString()：本地时间字符串类型
+
+   提示：你当前访问的时间是 new Date(tiem).tolocalString()
+
+
+3)记录上次访问的时间
+    c = new Cookie("lastTiem",new Date()+"") ;
+
+   服务器携带回去：addCookie(c) ;
+
+   提示：当前的时间是new Date();
+
+
+
+------
+Cookie:记录用户访问过的商品(商品足迹)
+
+
+1)改造product_List.htm----->product_list.jsp文件
+2)product_list.jsp文件中访问某一个商品的时候--->跳转后台serlvet:/productGetById
+3)
+	通过request获取参数(id)
+	获取cookie  :用户浏览器的过商品 cookie名称ids
+	判断cookie是否空
+			将当前id赋值给cookie的ids
+	不为空:  当前浏览的商品是多次
+                获取数据Value---->用split("-")--->String[]
+			
+              //判断当前ids内容是否包含该id  
+		  如果包含id        ids  2-1   String:contains(String str)
+                                         2-11-21
+                                               LinkedList<String>集合(addFisrt()...)
+				将最后的id移除   2-1  --->访问的第一个商品:id 1
+						   1-2
+				将当前id添加到一个位置
+
+	       如果不包含id:用户访问的是不同商品
+		  判断当前集合存储元素>=3
+					3-2-1	
+					将最后一个id删除,
+					将当前访问的id拼接到第一个(id=4)
+                                        4-3-2      (5-4-3)
+                      如果是小于3
+                                      访问的id 1-2  
+                                     
+                                      将当前id(3)直接放到第一个位置  :3-1-2
+
+
+                    ids="" ;清空
+                    获取到ids的内容:将List--->String for(String s:list)
+                    ids+=(s+"-") ;
+                    ids截取出来(0,ids长度-1)
+	cookie = new Cookie("ids",ids) ;
+
+	服务器将ids写回浏览器
+       response.addCookie(cookie) ;
+
+
+//重定向:
+	response.sendRedirect("/product_info"+id+".htm") ;
+ 
+    
+  
+                        
