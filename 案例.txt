@@ -1,0 +1,55 @@
+案例:1
+	在表单中输入用户名,失去焦点,给后台发送ajax请求,
+后台servlet判断用户名是否存在,在页面中展示用户名是否被占用!
+
+
+技术分析:
+		ajax:原生的ajax
+    
+步骤分析:
+		1)pom.xml文件中引入相关的依赖的jar包
+         dbtuls,beanutils,mysql驱动包,c3p0连接池,commons-logging:日志记录的jar包
+     		2)准备数据库和表
+                   create database ajax_01;
+                   use ajax_01;
+
+		CREATE TABLE `user` (
+		  `id` INT(11) NOT NULL AUTO_INCREMENT,
+		  `username` VARCHAR(20) DEFAULT NULL,
+		  `password` VARCHAR(20) DEFAULT NULL,
+		  `email` VARCHAR(20) DEFAULT NULL,
+		  `name` VARCHAR(20) DEFAULT NULL,
+		  `sex` VARCHAR(10) DEFAULT NULL,
+		  `birthday` DATE DEFAULT NULL,
+		  `hobby` VARCHAR(50) DEFAULT NULL,
+		  PRIMARY KEY (`id`)
+		) ENGINE=INNODB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+		INSERT  INTO `user`(`id`,`username`,`password`,`email`,`name`,`sex`,`birthday`,`hobby`) VALUES (1,'bbb','123','123@163.com','张三','男','1992-01-02','篮球, 足球, 排球'),(2,'ccc','123','ccc@itcast.cn','李四','女','1992-03-20','排球, 乒乓球'),(3,'aaa','123','aaa@itcast.cn','王守义','男','1990-08-11','足球, 排球'),
+(5,'tom','123','haha@qq.com','提莫','男',NULL,'篮球');
+
+             3)常见jsp文件 
+         用户名所在的文本框失去焦点--->发送ajax请求,判断用户名是否被占用
+                     表单中嵌套一个表格
+                              <form action="#" method="post">
+                                   <table>
+                                    用户名    name="username"   onblur="xx()"
+                                    密码      name="password"
+                                    提交
+                                  
+
+                                   </table>
+                         
+                              </form>
+              4)目录结构
+                     domain: User类   private String username;password
+                     service:UserService:---checkUsername4Ajax(String username)-->User
+                     dao:UserDao----->DataSoruceUtils.getDataSource()
+                           QueryRunner---->query(sql,new BeanHandler<>(User.class),username)
+                                sql:select * from user where username =? limit 1;
+                      
+                          servlet:1)接收参数数据
+                             2)调用userService()获取用户---->User
+                                 调用UserDao
+                             3)判断user是否为空
+                                    服务器响应1,用户名可以用
+                             否则,服务器响应0,用户名不可用
